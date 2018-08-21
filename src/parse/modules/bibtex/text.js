@@ -159,6 +159,14 @@ const parseBibTeX = function (str) {
 
       stack.consumeToken('}', {spaced: false})
       stack.consumeWhitespace()
+      
+      // sometimes, records are also ended with comma
+      if (stack.matches(',')) {
+        stack.consumeToken(',');
+      }
+      stack.consumeWhitespace()
+      
+      
 
       entries.push({type, label, properties})
     }
